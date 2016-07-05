@@ -1,0 +1,17 @@
+GetInputIntent get events for {day}
+GetInputIntent give me events for {day}
+GetInputIntent what happened on {day}
+GetInputIntent what happened
+GetInputIntent {day}
+
+GetResponseIntent yes
+GetResponseIntent yup
+GetResponseIntent sure
+GetResponseIntent yes please
+GetResponseIntent no
+GetResponseIntent not
+
+AMAZON.StopIntent no
+AMAZON.StopIntent nope
+AMAZON.StopIntent no thanks
+AMAZON.StopIntent no thank you
