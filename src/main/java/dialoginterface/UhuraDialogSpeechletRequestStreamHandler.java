@@ -1,4 +1,4 @@
-package dialogmanager;
+package dialoginterface;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,7 +23,7 @@ public class UhuraDialogSpeechletRequestStreamHandler extends SpeechletRequestSt
          * Alexa Skill and put the relevant Application Ids in this Set.
          */
         supportedApplicationIds = new HashSet<String>();
-         supportedApplicationIds.add("amzn1.echo-sdk-ams.app.2395104d-2bd6-4663-a4fd-ffcd007d6508");
+        supportedApplicationIds.add("amzn1.echo-sdk-ams.app.68eaa848-4117-4e35-9b60-81aeaebf0ebb");
     }
 
     public UhuraDialogSpeechletRequestStreamHandler() {

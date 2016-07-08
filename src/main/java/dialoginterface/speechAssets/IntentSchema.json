@@ -1,0 +1,64 @@
+{
+  "intents": [
+    {
+      "intent": "GreetingIntent"
+    },    
+    {
+      "intent": "InputGoalIntent",
+      "slots": [
+        {
+          "name": "cuisine",
+          "type": "LIST_OF_CUISINE"
+        },
+        {
+          "name": "genre",
+          "type": "LIST_OF_GENRE"
+        },
+        {
+          "name": "food",
+          "type": "LIST_OF_FOOD"
+        },
+        {
+          "name": "destination",
+          "type": "LIST_OF_DESTINATION"
+        },
+        {
+          "name": "duration",
+          "type": "AMAZON.DURATION"
+        },
+        {
+          "name": "time",
+          "type": "AMAZON.TIME"
+        }
+      ]
+    },    
+    {
+      "intent": "InputConstraintIntent",
+      "slots": [
+        {
+          "name": "duration",
+          "type": "AMAZON.DURATION"
+        },
+        {
+          "name": "time",
+          "type": "AMAZON.TIME"
+        }
+      ]
+    },    
+    {
+      "intent": "ConfirmIntent"
+    },
+    {
+      "intent": "DeclineIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}

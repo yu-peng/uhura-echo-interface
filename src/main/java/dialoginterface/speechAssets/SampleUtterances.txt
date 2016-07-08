@@ -1,0 +1,34 @@
+GreetingIntent hello
+GreetingIntent hi
+GreetingIntent good morning
+GreetingIntent good afternoon
+GreetingIntent good evening
+
+InputGoalIntent I want to go to {destination}
+InputGoalIntent I want to go to {destination} in {duration}
+InputGoalIntent I want to go to {destination} before {time}
+InputGoalIntent take me to {destination}
+InputGoalIntent take me to {destination} in {duration}
+InputGoalIntent take me to {destination} before {time}
+InputGoalIntent take me to a {cuisine} restaurant
+InputGoalIntent take me to a {cuisine} restaurant in {duration}
+InputGoalIntent i want to stop at a {destination}
+InputGoalIntent i want to stop at a {destination} for {duration}
+
+InputConstraintIntent in {duration}
+InputConstraintIntent {duration}
+InputConstraintIntent before {time}
+InputConstraintIntent after {time}
+
+ConfirmIntent yes
+ConfirmIntent yup
+ConfirmIntent sure
+ConfirmIntent yes please
+ConfirmIntent fine
+ConfirmIntent ok
+ConfirmIntent that is fine
+ConfirmIntent that is ok
+DeclineIntent no
+DeclineIntent not really
+
+AMAZON.StopIntent exit
