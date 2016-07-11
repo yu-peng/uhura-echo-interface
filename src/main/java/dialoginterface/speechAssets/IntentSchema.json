@@ -29,6 +29,10 @@
         {
           "name": "time",
           "type": "AMAZON.TIME"
+        },
+        {
+          "name": "prep",
+          "type": "LIST_OF_PREPOSITION"
         }
       ]
     },    
@@ -42,6 +46,10 @@
         {
           "name": "time",
           "type": "AMAZON.TIME"
+        },
+        {
+          "name": "prep",
+          "type": "LIST_OF_PREPOSITION"
         }
       ]
     },    

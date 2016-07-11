@@ -6,14 +6,28 @@ GreetingIntent good evening
 
 InputGoalIntent I want to go to {destination}
 InputGoalIntent I want to go to {destination} in {duration}
+InputGoalIntent I want to go to {destination} by {time}
 InputGoalIntent I want to go to {destination} before {time}
+
 InputGoalIntent take me to {destination}
 InputGoalIntent take me to {destination} in {duration}
+InputGoalIntent take me to {destination} by {time}
 InputGoalIntent take me to {destination} before {time}
-InputGoalIntent take me to a {cuisine} restaurant
-InputGoalIntent take me to a {cuisine} restaurant in {duration}
-InputGoalIntent i want to stop at a {destination}
-InputGoalIntent i want to stop at a {destination} for {duration}
+
+InputGoalIntent take me to a {cuisine} {destination}
+InputGoalIntent take me to a {cuisine} {destination} in {duration}
+InputGoalIntent take me to a {cuisine} {destination} by {time}
+InputGoalIntent take me to a {cuisine} {destination} before {time}
+
+InputGoalIntent take me to a {food} {destination}
+InputGoalIntent take me to a {food} {destination} in {duration}
+InputGoalIntent take me to a {food} {destination} by {time}
+InputGoalIntent take me to a {food} {destination} before {time}
+
+InputGoalIntent stop at a {destination}
+InputGoalIntent stop at a {destination} for {duration}
+InputGoalIntent stop at a {cuisine} {destination} for {duration}
+InputGoalIntent stop at a {food} {destination} for {duration}
 
 InputConstraintIntent in {duration}
 InputConstraintIntent {duration}
@@ -30,5 +44,6 @@ ConfirmIntent that is fine
 ConfirmIntent that is ok
 DeclineIntent no
 DeclineIntent not really
+DeclineIntent no that is it
 
 AMAZON.StopIntent exit
