@@ -10,7 +10,7 @@ To run this skill you need to do two things. The first is to deploy the example 
 3. Skip the blueprint
 4. Name the Lambda Function "Uhura".
 5. Select the runtime as Java 8
-6. Go to the the samples/ directory containing pom.xml, and run 'mvn assembly:assembly -DdescriptorId=jar-with-dependencies package'. This will generate a zip file named "uhura-echo-interface-0.1-jar-with-dependencies.jar" in the target directory.
+6. Go to the the directory containing pom.xml, and run 'mvn assembly:assembly -DdescriptorId=jar-with-dependencies package'. This will generate a zip file named "uhura-echo-interface-0.1-jar-with-dependencies.jar" in the target directory.
 7. Select Code entry type as "Upload a .ZIP file" and then upload the "uhura-echo-interface-0.1-jar-with-dependencies.jar" file from the build directory to Lambda
 8. Set the Handler as dialoginterface.UhuraDialogSpeechletRequestStreamHandler (this refers to the Lambda RequestStreamHandler file in the zip).
 9. Create a basic execution role and click create.
@@ -37,16 +37,16 @@ To run this skill you need to do two things. The first is to deploy the example 
 You may visit https://uhura.csail.mit.edu/echo-index.html to visualize the problem and solution Uhura is currently working on. Currently the backend only supports one user at a time. 
 
 ## Examples
-  User:  "Alexa/Echo, start uhura"
-  Alexa: "Good afternoon, this is Uhura, how may I help you?"
-  User:  "Take me home by seven pm."
-  Alexa: "Ok, anything else?"
-  User:  "Stop at a bike shop for five minutes."
-  Alexa: "Ok, anything else?"
-  User:  "No, that's it"
-  Alexa:  "Ok, I have found a plan for you ... Is that ok?"
-  User: "No."
-  Alexa:  "Ok, I have found another plan for you ... Is that ok?"
-  User: "That's fine."
-  Alexa:  "Have a nice trip!"
+User:  "Alexa/Echo, start uhura"
+Alexa: "Good afternoon, this is Uhura, how may I help you?"
+User:  "Take me home by seven pm."
+Alexa: "Ok, anything else?"
+User:  "Stop at a bike shop for five minutes."
+Alexa: "Ok, anything else?"
+User:  "No, that's it"
+Alexa:  "Ok, I have found a plan for you ... Is that ok?"
+User: "No."
+Alexa:  "Ok, I have found another plan for you ... Is that ok?"
+User: "That's fine."
+Alexa:  "Have a nice trip!"
 

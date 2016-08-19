@@ -19,8 +19,8 @@
           "type": "LIST_OF_FOOD"
         },
         {
-          "name": "destination",
-          "type": "LIST_OF_DESTINATION"
+          "name": "location",
+          "type": "LIST_OF_LOCATION"
         },
         {
           "name": "duration",
@@ -33,6 +33,40 @@
         {
           "name": "prep",
           "type": "LIST_OF_PREPOSITION"
+        }
+      ]
+    }, 
+    {
+      "intent": "InputDestinationIntent",
+      "slots": [
+        {
+          "name": "location",
+          "type": "LIST_OF_LOCATION"
+        },
+        {
+          "name": "duration",
+          "type": "AMAZON.DURATION"
+        },
+        {
+          "name": "time",
+          "type": "AMAZON.TIME"
+        }
+      ]
+    }, 
+    {
+      "intent": "InputOriginIntent",
+      "slots": [
+        {
+          "name": "location",
+          "type": "LIST_OF_LOCATION"
+        },
+        {
+          "name": "duration",
+          "type": "AMAZON.DURATION"
+        },
+        {
+          "name": "time",
+          "type": "AMAZON.TIME"
         }
       ]
     },    
@@ -52,12 +86,53 @@
           "type": "LIST_OF_PREPOSITION"
         }
       ]
+    },
+    {
+      "intent": "RemoveLastTaskIntent"
     },    
     {
       "intent": "ConfirmIntent"
     },
     {
       "intent": "DeclineIntent"
+    },
+    {
+      "intent": "DeclineWithConstraintIntent",
+      "slots": [
+        {
+          "name": "duration",
+          "type": "AMAZON.DURATION"
+        },
+        {
+          "name": "time",
+          "type": "AMAZON.TIME"
+        },
+        {
+          "name": "prep",
+          "type": "LIST_OF_PREPOSITION"
+        },
+        {
+          "name": "verb",
+          "type": "LIST_OF_VERB"
+        },
+        {
+          "name": "intention",
+          "type": "LIST_OF_INTENTION"
+        }
+      ]
+    },
+    {
+      "intent": "DeclineWithRiskBoundIntent",
+      "slots": [
+        {
+          "name": "cc1",
+          "type": "AMAZON.NUMBER"
+        },
+        {
+          "name": "cc2",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
     },
     {
       "intent": "AMAZON.HelpIntent"
