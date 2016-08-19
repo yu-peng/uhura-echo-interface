@@ -38,15 +38,26 @@ You may visit https://uhura.csail.mit.edu/echo-index.html to visualize the probl
 
 ## Examples
 User:  "Alexa/Echo, start uhura"
+
 Alexa: "Good afternoon, this is Uhura, how may I help you?"
+
 User:  "Take me home by seven pm."
+
 Alexa: "Ok, anything else?"
+
 User:  "Stop at a bike shop for five minutes."
+
 Alexa: "Ok, anything else?"
+
 User:  "No, that's it"
+
 Alexa:  "Ok, I have found a plan for you ... Is that ok?"
+
 User: "No."
+
 Alexa:  "Ok, I have found another plan for you ... Is that ok?"
+
 User: "That's fine."
+
 Alexa:  "Have a nice trip!"
 
