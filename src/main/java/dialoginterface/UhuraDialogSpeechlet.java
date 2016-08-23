@@ -119,9 +119,13 @@ public class UhuraDialogSpeechlet implements Speechlet {
         	
             return handleInputOriginRequest(intent, session);
             
-        } else if ("InputConstraintIntent".equals(intentName)) {
+        } else if ("InputCorrectConstraintIntent".equals(intentName)) {
         	
-            return handleInputConstraintRequest(intent, session);
+            return handleInputCorrectConstraintRequest(intent, session);
+            
+        } else if ("InputCorrectGoalIntent".equals(intentName)) {
+        	
+            return handleInputCorrectGoalRequest(intent, session);
             
         } else if ("RemoveLastTaskIntent".equals(intentName)) {
         	
@@ -139,9 +143,21 @@ public class UhuraDialogSpeechlet implements Speechlet {
         	
             return handleDeclineRequest(intent, session);
             
-        } else if ("DeclineWithRiskBoundIntent".equals(intentName)) {
+        } else if ("DeclineDepartureRelaxationIntent".equals(intentName)) {
         	
-            return handleDeclineRequest(intent, session);
+            return handleDeclineDepartureRelaxationRequest(intent, session);
+            
+        } else if ("DeclineArrivalRelaxationIntent".equals(intentName)) {
+        	
+            return handleDeclineArrivalRelaxationRequest(intent, session);
+            
+        } else if ("DeclineArrivalRelaxationIntent".equals(intentName)) {
+        	
+            return handleDeclineArrivalRelaxationRequest(intent, session);
+            
+        } else if ("DeclineChoiceIntent".equals(intentName)) {
+        	
+            return handleDeclineChoiceRequest(intent, session);
             
         } else if ("AMAZON.HelpIntent".equals(intentName)) {
         	
@@ -249,36 +265,7 @@ public class UhuraDialogSpeechlet implements Speechlet {
         
         ArrayList<String> events = getResponseFromUhura(session.getSessionId(),"Manager/AddGoal",params);
         
-        if (events.isEmpty()) {
-            String speechOutput = speechOutputBuilder.toString() +
-                    "There is a problem connecting to Uhura at this time."
-                            + " Please try again later.";
-
-            // Create the plain text output
-            SsmlOutputSpeech outputSpeech = new SsmlOutputSpeech();
-            outputSpeech.setSsml("<speak>" + speechOutput + "</speak>");
-
-            return SpeechletResponse.newTellResponse(outputSpeech);
-            
-        } else {
-        	            
-            for (int i = 0; i < events.size(); i++) {
-                speechOutputBuilder.append("<p>");
-                speechOutputBuilder.append(events.get(i));
-                speechOutputBuilder.append("</p> ");
-            }
-            
-            String speechOutput = speechOutputBuilder.toString();
-
-            String repromptText =
-                    "With Uhura, you can plan a trip of multiple tasks and requirements in your city. "
-                            + " For example, you could say take me to a pizza restaurant in 30 minutes."
-                            + " Now, how can I help you today?";
-
-
-            SpeechletResponse response = newAskResponse("<speak>" + speechOutput + "</speak>", true, repromptText, false);
-            return response;
-        }
+        return presentResponse(events);
     }
     
     private SpeechletResponse handleInputOriginRequest(Intent intent, Session session) {
@@ -315,36 +302,7 @@ public class UhuraDialogSpeechlet implements Speechlet {
                 
         ArrayList<String> events = getResponseFromUhura(session.getSessionId(),"Manager/SetOrigin",params);
         
-        if (events.isEmpty()) {
-            String speechOutput = speechOutputBuilder.toString() +
-                    "There is a problem connecting to Uhura at this time."
-                            + " Please try again later.";
-
-            // Create the plain text output
-            SsmlOutputSpeech outputSpeech = new SsmlOutputSpeech();
-            outputSpeech.setSsml("<speak>" + speechOutput + "</speak>");
-
-            return SpeechletResponse.newTellResponse(outputSpeech);
-            
-        } else {
-        	            
-            for (int i = 0; i < events.size(); i++) {
-                speechOutputBuilder.append("<p>");
-                speechOutputBuilder.append(events.get(i));
-                speechOutputBuilder.append("</p> ");
-            }
-            
-            String speechOutput = speechOutputBuilder.toString();
-
-            String repromptText =
-                    "With Uhura, you can plan a trip of multiple tasks and requirements in your city. "
-                            + " For example, you could say take me to a pizza restaurant in 30 minutes."
-                            + " Now, how can I help you today?";
-
-
-            SpeechletResponse response = newAskResponse("<speak>" + speechOutput + "</speak>", true, repromptText, false);
-            return response;
-        }
+        return presentResponse(events);
     }
     
     private SpeechletResponse handleInputDestinationRequest(Intent intent, Session session) {
@@ -394,39 +352,10 @@ public class UhuraDialogSpeechlet implements Speechlet {
                 
         ArrayList<String> events = getResponseFromUhura(session.getSessionId(),"Manager/SetDestination",params);
         
-        if (events.isEmpty()) {
-            String speechOutput = speechOutputBuilder.toString() +
-                    "There is a problem connecting to Uhura at this time."
-                            + " Please try again later.";
-
-            // Create the plain text output
-            SsmlOutputSpeech outputSpeech = new SsmlOutputSpeech();
-            outputSpeech.setSsml("<speak>" + speechOutput + "</speak>");
-
-            return SpeechletResponse.newTellResponse(outputSpeech);
-            
-        } else {
-        	            
-            for (int i = 0; i < events.size(); i++) {
-                speechOutputBuilder.append("<p>");
-                speechOutputBuilder.append(events.get(i));
-                speechOutputBuilder.append("</p> ");
-            }
-            
-            String speechOutput = speechOutputBuilder.toString();
-
-            String repromptText =
-                    "With Uhura, you can plan a trip of multiple tasks and requirements in your city. "
-                            + " For example, you could say take me to a pizza restaurant in 30 minutes."
-                            + " Now, how can I help you today?";
-
-
-            SpeechletResponse response = newAskResponse("<speak>" + speechOutput + "</speak>", true, repromptText, false);
-            return response;
-        }
+        return presentResponse(events);
     }
     
-    private SpeechletResponse handleInputConstraintRequest(Intent intent, Session session) {
+    private SpeechletResponse handleInputCorrectConstraintRequest(Intent intent, Session session) {
         
     	HashMap<String,String> params = new HashMap<String,String>();
         StringBuilder speechOutputBuilder = new StringBuilder();
@@ -438,10 +367,6 @@ public class UhuraDialogSpeechlet implements Speechlet {
         if (timeSlot != null && timeSlot.getValue() != null) {
             // Store the user's favorite color in the Session and create response.
             String time = timeSlot.getValue();
-            
-//            speechOutputBuilder.append("<p>");
-//            speechOutputBuilder.append("Time is " + time);
-//            speechOutputBuilder.append("</p> ");
             params.put("time", time);
 
         }
@@ -452,46 +377,49 @@ public class UhuraDialogSpeechlet implements Speechlet {
         if (durationSlot != null && durationSlot.getValue() != null) {
             // Store the user's favorite color in the Session and create response.
             String duration = durationSlot.getValue();
-            
-//            speechOutputBuilder.append("<p>");
-//            speechOutputBuilder.append("Duration is " + duration);
-//            speechOutputBuilder.append("</p> ");
             params.put("duration", duration);
 
         }
 
-        ArrayList<String> events = getResponseFromUhura(session.getSessionId(),"Manager/AddConstraint",params);
+        ArrayList<String> events = getResponseFromUhura(session.getSessionId(),"Manager/CorrectConstraint",params);
 
-        if (events.isEmpty()) {
-            String speechOutput =
-                    "There is a problem connecting to Uhura at this time."
-                            + " Please try again later.";
-
-            // Create the plain text output
-            SsmlOutputSpeech outputSpeech = new SsmlOutputSpeech();
-            outputSpeech.setSsml("<speak>" + speechOutput + "</speak>");
-
-            return SpeechletResponse.newTellResponse(outputSpeech);
+        return presentResponse(events);
+    }
+    
+    private SpeechletResponse handleInputCorrectGoalRequest(Intent intent, Session session) {
+        
+    	HashMap<String,String> params = new HashMap<String,String>();
+        StringBuilder speechOutputBuilder = new StringBuilder();
+        
+        Map<String, Slot> slots = intent.getSlots();
+        
+        Slot destinationSlot = slots.get(LOCATION_SLOT);
+        // Check for favorite color and create output to user.
+        if (destinationSlot != null && destinationSlot.getValue() != null) {
+            // Store the user's favorite color in the Session and create response.
+            String destination = destinationSlot.getValue();
             
-        } else {
-        	            
-            for (int i = 0; i < events.size(); i++) {
-                speechOutputBuilder.append("<p>");
-                speechOutputBuilder.append(events.get(i));
-                speechOutputBuilder.append("</p> ");
-            }
-            
-            String speechOutput = speechOutputBuilder.toString();
-
-            String repromptText =
-                    "With Uhura, you can plan a trip of multiple tasks and requirements in your city. "
-                            + " For example, you could say take me to a pizza restaurant in 30 minutes."
-                            + " Now, how can I help you today?";
-
-
-            SpeechletResponse response = newAskResponse("<speak>" + speechOutput + "</speak>", true, repromptText, false);
-            return response;
+//            speechOutputBuilder.append("<p>");
+//            speechOutputBuilder.append("Destination is " + destination);
+//            speechOutputBuilder.append("</p> ");
+            params.put("location", destination);
         }
+        
+        Slot cuisineSlot = slots.get(CUISINE_SLOT);
+        // Check for favorite color and create output to user.
+        if (cuisineSlot != null && cuisineSlot.getValue() != null) {
+            // Store the user's favorite color in the Session and create response.
+            String cuisine = cuisineSlot.getValue();
+            
+//            speechOutputBuilder.append("<p>");
+//            speechOutputBuilder.append("Cuisine is " + cuisine);
+//            speechOutputBuilder.append("</p> ");
+            params.put("cuisine", cuisine);
+        }
+
+        ArrayList<String> events = getResponseFromUhura(session.getSessionId(),"Manager/CorrectGoal",params);
+
+        return presentResponse(events);
     }
     
     private SpeechletResponse handleRemoveLastTaskRequest(Intent intent, Session session) {
@@ -501,36 +429,7 @@ public class UhuraDialogSpeechlet implements Speechlet {
         
         ArrayList<String> events = getResponseFromUhura(session.getSessionId(),"Manager/RemoveLastTask",params);
 
-        if (events.isEmpty()) {
-            String speechOutput =
-                    "There is a problem connecting to Uhura at this time."
-                            + " Please try again later.";
-
-            // Create the plain text output
-            SsmlOutputSpeech outputSpeech = new SsmlOutputSpeech();
-            outputSpeech.setSsml("<speak>" + speechOutput + "</speak>");
-
-            return SpeechletResponse.newTellResponse(outputSpeech);
-            
-        } else {
-        	            
-            for (int i = 0; i < events.size(); i++) {
-                speechOutputBuilder.append("<p>");
-                speechOutputBuilder.append(events.get(i));
-                speechOutputBuilder.append("</p> ");
-            }
-            
-            String speechOutput = speechOutputBuilder.toString();
-
-            String repromptText =
-                    "With Uhura, you can plan a trip of multiple tasks and requirements in your city. "
-                            + " For example, you could say take me to a pizza restaurant in 30 minutes."
-                            + " Now, how can I help you today?";
-
-
-            SpeechletResponse response = newAskResponse("<speak>" + speechOutput + "</speak>", true, repromptText, false);
-            return response;
-        }
+        return presentResponse(events);
     }
     
     private SpeechletResponse handleConfirmRequest(Intent intent, Session session) {
@@ -538,53 +437,7 @@ public class UhuraDialogSpeechlet implements Speechlet {
     	HashMap<String,String> params = new HashMap<String,String>();
         ArrayList<String> events = getResponseFromUhura(session.getSessionId(),"Manager/SendConfirm",params);
 
-        StringBuilder speechOutputBuilder = new StringBuilder();
-
-        if (events.isEmpty()) {
-            String speechOutput =
-                    "There is a problem connecting to Uhura at this time."
-                            + " Please try again later.";
-
-            // Create the plain text output
-            SsmlOutputSpeech outputSpeech = new SsmlOutputSpeech();
-            outputSpeech.setSsml("<speak>" + speechOutput + "</speak>");
-
-            return SpeechletResponse.newTellResponse(outputSpeech);
-            
-        } else if (events.contains("terminal")) {
-        	for (int i = 0; i < events.size(); i++) {
-        		if (!events.get(i).equals("terminal")){
-        			speechOutputBuilder.append("<p>");
-                    speechOutputBuilder.append(events.get(i));
-                    speechOutputBuilder.append("</p> ");
-        		}                
-            }
-            String speechOutput = speechOutputBuilder.toString();
-
-            SsmlOutputSpeech outputSpeech = new SsmlOutputSpeech();
-            outputSpeech.setSsml("<speak>" + speechOutput + "</speak>");
-
-            return SpeechletResponse.newTellResponse(outputSpeech);
-            
-        } else {
-        	            
-            for (int i = 0; i < events.size(); i++) {
-                speechOutputBuilder.append("<p>");
-                speechOutputBuilder.append(events.get(i));
-                speechOutputBuilder.append("</p> ");
-            }
-            
-            String speechOutput = speechOutputBuilder.toString();
-
-            String repromptText =
-                    "With Uhura, you can plan a trip of multiple tasks and requirements in your city. "
-                            + " For example, you could say take me to a pizza restaurant in 30 minutes."
-                            + " Now, how can I help you today?";
-
-
-            SpeechletResponse response = newAskResponse("<speak>" + speechOutput + "</speak>", true, repromptText, false);
-            return response;
-        }
+        return presentResponse(events);
     }
     
     private SpeechletResponse handleDeclineRequest(Intent intent, Session session) {
@@ -611,7 +464,56 @@ public class UhuraDialogSpeechlet implements Speechlet {
 
         ArrayList<String> events = getResponseFromUhura(session.getSessionId(),"Manager/SendDecline",params);
 
-        StringBuilder speechOutputBuilder = new StringBuilder();
+        return presentResponse(events);
+    }
+    
+    private SpeechletResponse handleDeclineDepartureRelaxationRequest(Intent intent, Session session) {
+        
+    	HashMap<String,String> params = new HashMap<String,String>();
+    	Map<String, Slot> slots = intent.getSlots();
+    	
+    	for (String key : slots.keySet()){
+    		if (slots.get(key).getValue() != null){
+            	params.put(key, slots.get(key).getValue());
+    		}   		
+    	}
+
+        ArrayList<String> events = getResponseFromUhura(session.getSessionId(),"Manager/SendDeclineDepartureRelaxation",params);
+        return presentResponse(events);
+    }
+    
+    private SpeechletResponse handleDeclineArrivalRelaxationRequest(Intent intent, Session session) {
+        
+    	HashMap<String,String> params = new HashMap<String,String>();
+    	Map<String, Slot> slots = intent.getSlots();
+    	
+    	for (String key : slots.keySet()){
+    		if (slots.get(key).getValue() != null){
+            	params.put(key, slots.get(key).getValue());
+    		}   		
+    	}
+
+        ArrayList<String> events = getResponseFromUhura(session.getSessionId(),"Manager/SendDeclineArrivalRelaxation",params);
+        return presentResponse(events);
+    }
+    
+    private SpeechletResponse handleDeclineChoiceRequest(Intent intent, Session session) {
+        
+    	HashMap<String,String> params = new HashMap<String,String>();
+    	Map<String, Slot> slots = intent.getSlots();
+    	
+    	for (String key : slots.keySet()){
+    		if (slots.get(key).getValue() != null){
+            	params.put(key, slots.get(key).getValue());
+    		}   		
+    	}
+
+        ArrayList<String> events = getResponseFromUhura(session.getSessionId(),"Manager/SendDeclineChoice",params);
+        return presentResponse(events);
+    }
+    
+    private SpeechletResponse presentResponse(ArrayList<String> events){
+    	StringBuilder speechOutputBuilder = new StringBuilder();
 
         if (events.isEmpty()) {
             String speechOutput =
@@ -658,7 +560,7 @@ public class UhuraDialogSpeechlet implements Speechlet {
             SpeechletResponse response = newAskResponse("<speak>" + speechOutput + "</speak>", true, repromptText, false);
             return response;
         }
-    }
+    } 
 
     /**
      * Function to handle the onLaunch skill behavior.

@@ -71,7 +71,7 @@
       ]
     },    
     {
-      "intent": "InputConstraintIntent",
+      "intent": "InputCorrectConstraintIntent",
       "slots": [
         {
           "name": "duration",
@@ -84,6 +84,19 @@
         {
           "name": "prep",
           "type": "LIST_OF_PREPOSITION"
+        }
+      ]
+    },    
+    {
+      "intent": "InputCorrectGoalIntent",
+      "slots": [
+        {
+          "name": "location",
+          "type": "LIST_OF_LOCATION"
+        },
+        {
+          "name": "cuisine",
+          "type": "LIST_OF_CUISINE"
         }
       ]
     },
@@ -122,14 +135,53 @@
       ]
     },
     {
+      "intent": "DeclineDepartureRelaxationIntent",
+      "slots": [
+      	{
+          "name": "time",
+          "type": "AMAZON.TIME"
+        }
+      ]
+    },
+    {
+      "intent": "DeclineArrivalRelaxationIntent",
+      "slots": [
+      	{
+          "name": "location",
+          "type": "LIST_OF_LOCATION"
+        },
+        {
+          "name": "time",
+          "type": "AMAZON.TIME"
+        },
+        {
+          "name": "duration",
+          "type": "AMAZON.DURATION"
+        }
+      ]
+    },
+    {
+      "intent": "DeclineChoiceIntent",
+      "slots": [
+      	{
+          "name": "location",
+          "type": "LIST_OF_LOCATION"
+        },
+        {
+          "name": "cuisine",
+          "type": "LIST_OF_CUISINE"
+        }
+      ]
+    },
+    {
       "intent": "DeclineWithRiskBoundIntent",
       "slots": [
         {
-          "name": "cc1",
+          "name": "cc_a",
           "type": "AMAZON.NUMBER"
         },
         {
-          "name": "cc2",
+          "name": "cc_b",
           "type": "AMAZON.NUMBER"
         }
       ]

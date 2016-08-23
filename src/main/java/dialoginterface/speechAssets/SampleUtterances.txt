@@ -9,37 +9,44 @@ InputGoalIntent I want to go to {location} in {duration}
 InputGoalIntent I want to go to {location} by {time}
 InputGoalIntent I want to go to {location} before {time}
 
-InputGoalIntent take me to {location}
-InputGoalIntent take me to {location} in {duration}
-InputGoalIntent take me to {location} by {time}
-InputGoalIntent take me to {location} before {time}
-
-InputGoalIntent take me to a {cuisine} {location}
-InputGoalIntent take me to a {cuisine} {location} in {duration}
-InputGoalIntent take me to a {cuisine} {location} by {time}
-InputGoalIntent take me to a {cuisine} {location} before {time}
+InputGoalIntent I want to go to {cuisine} {location}
+InputGoalIntent I want to go to {cuisine} {location} in {duration}
+InputGoalIntent I want to go to {cuisine} {location} by {time}
+InputGoalIntent I want to go to {cuisine} {location} before {time}
 
 InputGoalIntent take me to a {food} {location}
 InputGoalIntent take me to a {food} {location} in {duration}
 InputGoalIntent take me to a {food} {location} by {time}
 InputGoalIntent take me to a {food} {location} before {time}
 
+InputGoalIntent take me to a {cuisine} {location}
+InputGoalIntent take me to a {cuisine} {location} in {duration}
+InputGoalIntent take me to a {cuisine} {location} by {time}
+InputGoalIntent take me to a {cuisine} {location} before {time}
+
 InputGoalIntent stop at a {location}
+InputGoalIntent stop at a {cuisine} {location}
 InputGoalIntent stop at a {location} for {duration}
 InputGoalIntent stop at a {cuisine} {location} for {duration}
 InputGoalIntent stop at a {food} {location} for {duration}
 
-InputConstraintIntent in {duration}
-InputConstraintIntent {duration}
-InputConstraintIntent before {time}
-InputConstraintIntent after {time}
+InputCorrectConstraintIntent no I want to stay there for {duration}
+InputCorrectConstraintIntent no I want to spend {duration} there
 
-InputDestinationIntent the destination of my trip is {location}
+InputCorrectGoalIntent no take me to {location}
+InputCorrectGoalIntent no take me to {cuisine} {location}
+InputCorrectGoalIntent no I want to go to {location}
+InputCorrectGoalIntent no I want to go to {cuisine} {location}
+
 InputDestinationIntent the destination is {location} and take me there in {duration}
 InputDestinationIntent the destination is {location} and take me there by {time}
 InputDestinationIntent the destination is {location} and take me there before {time}
 InputDestinationIntent I am going to {location} and take me there before {time}
 InputDestinationIntent I am going to {location} and take me there by {time}
+InputDestinationIntent I need to arrive {location} by {time}
+InputDestinationIntent I need to arrive at {location} by {time}
+InputDestinationIntent I need to arrive {location} in {location}
+InputDestinationIntent I need to arrive at {location} in {location}
 
 InputOriginIntent I am leaving from {location}
 InputOriginIntent I am leaving from {location} at {time}
@@ -61,11 +68,24 @@ ConfirmIntent that is ok
 DeclineIntent no
 DeclineIntent not really
 DeclineIntent no that is it
+DeclineIntent no show me something different
 
 DeclineWithConstraintIntent no I {intention} {verb} {prep} {time}
 DeclineWithConstraintIntent no I {intention} {verb} {prep} {duration}
 
 DeclineWithRiskBoundIntent no I cannot take more than {cc_a} percent risk
 DeclineWithRiskBoundIntent no I cannot take more than {cc_a} point {cc_b} percent risk
+
+DeclineDepartureRelaxationIntent no I cannot leave earlier than {time}
+
+DeclineArrivalRelaxationIntent no I do not want to arrive later than {time}
+DeclineArrivalRelaxationIntent no I want to arrive {location} in {duration}
+DeclineArrivalRelaxationIntent no I want to arrive {location} before {time}
+
+DeclineChoiceIntent no I want to go to a different {location}
+DeclineChoiceIntent no I want to go to a different {cuisine} {location}
+DeclineChoiceIntent no I do not like this {location}
+DeclineChoiceIntent no I do not like this {cuisine} {location}
+
 
 AMAZON.StopIntent exit
