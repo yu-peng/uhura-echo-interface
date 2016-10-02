@@ -141,7 +141,7 @@ public class UhuraDialogSpeechlet implements Speechlet {
             
         } else if ("DeclineWithConstraintIntent".equals(intentName)) {
         	
-            return handleDeclineRequest(intent, session);
+            return handleDeclineWithConstraintRequest(intent, session);
             
         } else if ("DeclineDepartureRelaxationIntent".equals(intentName)) {
         	
@@ -151,9 +151,9 @@ public class UhuraDialogSpeechlet implements Speechlet {
         	
             return handleDeclineArrivalRelaxationRequest(intent, session);
             
-        } else if ("DeclineArrivalRelaxationIntent".equals(intentName)) {
+        } else if ("DeclineWithRiskBoundIntent".equals(intentName)) {
         	
-            return handleDeclineArrivalRelaxationRequest(intent, session);
+            return handleDeclineRiskBoundRelaxationRequest(intent, session);
             
         } else if ("DeclineChoiceIntent".equals(intentName)) {
         	
@@ -443,6 +443,24 @@ public class UhuraDialogSpeechlet implements Speechlet {
     private SpeechletResponse handleDeclineRequest(Intent intent, Session session) {
         
     	HashMap<String,String> params = new HashMap<String,String>();
+
+        ArrayList<String> events = getResponseFromUhura(session.getSessionId(),"Manager/SendDecline",params);
+
+        return presentResponse(events);
+    }
+    
+    private SpeechletResponse handleDeclineWithConstraintRequest(Intent intent, Session session) {
+        
+    	HashMap<String,String> params = new HashMap<String,String>();
+
+        ArrayList<String> events = getResponseFromUhura(session.getSessionId(),"Manager/SendDeclineTemporalRelaxation",params);
+
+        return presentResponse(events);
+    }
+    
+    private SpeechletResponse handleDeclineRiskBoundRelaxationRequest(Intent intent, Session session) {
+        
+    	HashMap<String,String> params = new HashMap<String,String>();
     	Map<String, Slot> slots = intent.getSlots();
     	double cc = 0;
     	
@@ -459,10 +477,10 @@ public class UhuraDialogSpeechlet implements Speechlet {
     	}
     	
     	if (slots.containsKey("cc_a") || slots.containsKey("cc_b")){
-    		params.put("cc", ""+cc);
+    		params.put("newCC", ""+cc);
     	}
 
-        ArrayList<String> events = getResponseFromUhura(session.getSessionId(),"Manager/SendDecline",params);
+        ArrayList<String> events = getResponseFromUhura(session.getSessionId(),"Manager/SendDeclineCCRelaxation",params);
 
         return presentResponse(events);
     }
@@ -552,9 +570,8 @@ public class UhuraDialogSpeechlet implements Speechlet {
             String speechOutput = speechOutputBuilder.toString();
 
             String repromptText =
-                    "With Uhura, you can plan a trip of multiple tasks and requirements in your city. "
-                            + " For example, you could say take me to a pizza restaurant in 30 minutes."
-                            + " Now, how can I help you today?";
+                    "With Uhura, you can plan a trip of multiple tasks and requirements. "
+                            + " How may I help you today?";
 
 
             SpeechletResponse response = newAskResponse("<speak>" + speechOutput + "</speak>", true, repromptText, false);
@@ -606,9 +623,8 @@ public class UhuraDialogSpeechlet implements Speechlet {
         // understood, they will be prompted again with this text.
         
         String repromptText =
-                "With Uhura, you can plan a trip of multiple tasks and requirements in your city. "
-                        + " For example, you could say take me to a pizza restaurant in 30 minutes."
-                        + " Now, how can I help you today?";
+        		"With Uhura, you can plan a trip of multiple tasks and requirements. "
+                        + " How may I help you today?";;
 
         return newAskResponse(speechOutput, false, repromptText, false);
     }

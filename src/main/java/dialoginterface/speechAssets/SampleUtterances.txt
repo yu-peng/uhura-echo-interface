@@ -70,7 +70,6 @@ DeclineIntent not really
 DeclineIntent no that is it
 DeclineIntent no show me something different
 
-DeclineWithConstraintIntent no I {intention} {verb} {prep} {time}
 DeclineWithConstraintIntent no I {intention} {verb} {prep} {duration}
 
 DeclineWithRiskBoundIntent no I cannot take more than {cc_a} percent risk
