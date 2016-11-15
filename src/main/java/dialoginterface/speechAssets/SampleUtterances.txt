@@ -45,8 +45,8 @@ InputDestinationIntent I am going to {location} and take me there before {time}
 InputDestinationIntent I am going to {location} and take me there by {time}
 InputDestinationIntent I need to arrive {location} by {time}
 InputDestinationIntent I need to arrive at {location} by {time}
-InputDestinationIntent I need to arrive {location} in {location}
-InputDestinationIntent I need to arrive at {location} in {location}
+InputDestinationIntent I need to arrive {location} in {duration}
+InputDestinationIntent I need to arrive at {location} in {duration}
 
 InputOriginIntent I am leaving from {location}
 InputOriginIntent I am leaving from {location} at {time}

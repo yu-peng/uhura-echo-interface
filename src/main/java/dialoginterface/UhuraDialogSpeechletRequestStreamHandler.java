@@ -24,6 +24,7 @@ public class UhuraDialogSpeechletRequestStreamHandler extends SpeechletRequestSt
          */
         supportedApplicationIds = new HashSet<String>();
         supportedApplicationIds.add("amzn1.echo-sdk-ams.app.68eaa848-4117-4e35-9b60-81aeaebf0ebb");
+        supportedApplicationIds.add("amzn1.ask.skill.e8e219d4-2aa8-4caa-a9ba-0a4c4a1af076");
     }
 
     public UhuraDialogSpeechletRequestStreamHandler() {
