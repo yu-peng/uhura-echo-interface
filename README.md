@@ -7,18 +7,17 @@ To run this skill you need to do two things. The first is to deploy the example 
 ### AWS Lambda Setup
 1. Go to the AWS Console and click on the Lambda link. Note: ensure you are in us-east or you wont be able to use Alexa with Lambda.
 2. Click on the Create a Lambda Function or Get Started Now button.
-3. Skip the blueprint
-4. Name the Lambda Function "Uhura".
-5. Select the runtime as Java 8
+3. Select 'Blank Function' at the 'Select blueprint' page.
+4. At the 'Configure triggers' page. click the empty square and select 'Alexa Skills Kit', then click 'Next'.
+5. At the 'Configure function' page, set a Name, select the runtime as Java 8.
 6. Go to the the directory containing pom.xml, and run 'mvn assembly:assembly -DdescriptorId=jar-with-dependencies package'. This will generate a zip file named "uhura-echo-interface-0.1-jar-with-dependencies.jar" in the target directory.
 7. Select Code entry type as "Upload a .ZIP file" and then upload the "uhura-echo-interface-0.1-jar-with-dependencies.jar" file from the build directory to Lambda
 8. Set the Handler as dialoginterface.UhuraDialogSpeechletRequestStreamHandler (this refers to the Lambda RequestStreamHandler file in the zip).
-9. Create a basic execution role and click create.
+9. Create a custom rule, then select 'Create a new IAM Role' in the newly opened page. Type in a Role Name and leave the Policy Document unchanged. The click 'Allow'.
 10. Leave the Advanced settings as the defaults.
-11. Click "Next" and review the settings then click "Create Function"
-12. Click the "Event Sources" tab and select "Add event source"
-13. Set the Event Source type as Alexa Skills kit and Enable it now. Click Submit.
-14. Copy the ARN from the top right to be used later in the Alexa Skill Setup.
+11. Click "Next" and review the settings then click "Create Function".
+12. Click the "Triggers" tab and select "Add trigger" (if nothing exists under this tab). Click the land square and set the trigger type to Alexa Skills kit. Click Submit.
+13. Copy the ARN from the top right to be used later in the Alexa Skill Setup.
 
 ### Alexa Skill Setup
 1. Go to the [Alexa Console](https://developer.amazon.com/edw/home.html) and click Add a New Skill.
